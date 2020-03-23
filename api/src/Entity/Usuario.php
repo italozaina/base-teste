@@ -63,5 +63,82 @@ class Usuario
      */
     private $dtRegistro = 'CURRENT_TIMESTAMP';
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getAcesso(): ?int
+    {
+        return $this->acesso;
+    }
+
+    public function setAcesso(int $acesso): self
+    {
+        $this->acesso = $acesso;
+
+        return $this;
+    }
+
+    public function getDtUltimoAcesso(): ?\DateTimeInterface
+    {
+        return $this->dtUltimoAcesso;
+    }
+
+    public function setDtUltimoAcesso(?\DateTimeInterface $dtUltimoAcesso): self
+    {
+        $this->dtUltimoAcesso = $dtUltimoAcesso;
+
+        return $this;
+    }
+
+    public function getStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getDtRegistro(): ?\DateTimeInterface
+    {
+        return $this->dtRegistro;
+    }
+
+    public function setDtRegistro(\DateTimeInterface $dtRegistro): self
+    {
+        $this->dtRegistro = $dtRegistro;
+
+        return $this;
+    }
+
 
 }
