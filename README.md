@@ -13,6 +13,7 @@ Estruturação:
   ```shell
   composer create-project symfony/website-skeleton:^4.4 api
   composer require api
+  php bin/console doctrine:mapping:import 'App\Entity' annotation --path=src/Entity
   ```
 
 * /angular
