@@ -8,6 +8,13 @@ Estruturação:
 
 * /api
 
+  Gerado por:
+
+  ```shell
+  composer create-project symfony/website-skeleton:^4.4 api
+  composer require api
+  ```
+
 * /angular
 
 * /react
