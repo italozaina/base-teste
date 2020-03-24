@@ -19,5 +19,17 @@ Estruturação:
 
 * /angular
 
-* /react
+* /reactapp
+
+  Gerado por:
+
+  ```
+  npx create-react-app reactapp
+  yarn add redux react-redux redux-thunk redux-form react-router-dom connected-react-router prop-types lodash
+  yarn add bootstrap font-awesome
+  yarn start
+  npx @api-platform/client-generator http://localhost:8000/api src/
+```
+  
+  
 
