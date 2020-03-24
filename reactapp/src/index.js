@@ -1,13 +1,50 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { reducer as form } from 'redux-form';
+import { Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import {
+  ConnectedRouter,
+  connectRouter,
+  routerMiddleware
+} from 'connected-react-router';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'font-awesome/css/font-awesome.css';
 import * as serviceWorker from './serviceWorker';
+// Import your reducers and routes here
+import App from './App';
+import usuario from './reducers/usuario/';
+import cliente from './reducers/cliente/';
+
+import clienteRoutes from './routes/cliente';
+import usuarioRoutes from './routes/usuario';
+
+const history = createBrowserHistory();
+const store = createStore(
+  combineReducers({
+    router: connectRouter(history),
+    form,
+    /* Add your reducers here */
+    usuario,/* ... */
+    cliente,/* ... */
+  }),
+  applyMiddleware(routerMiddleware(history), thunk)
+);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Switch>
+        <Route path="/" component={App} strict={true} exact={true}/>
+        { usuarioRoutes }
+        { clienteRoutes }
+        <Route render={() => <h1>Not Found</h1>} />
+      </Switch>
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
