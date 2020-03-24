@@ -1,0 +1,33 @@
+<div>
+    <h1>Usuários</h1>
+    <button type="button" [routerLink]="['/crud/create/']">Criar novo usuário</button>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>username</th>
+                <th>password</th>
+                <th>acesso</th>
+                <th>dtUltimoAcesso</th>                            
+                <th>status</th>
+                <th>dtRegistro</th>
+                <th>ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios['hydra:member']">
+                <td>{{usuario.id}}</td>
+                <td>{{usuario.username}}</td>
+                <td>{{usuario.password}}</td>
+                <td>{{usuario.acesso}}</td>
+                <td>{{usuario.dtUltimoAcesso}}</td>
+                <td>{{usuario.status}}</td>
+                <td>{{usuario.dtRegistro}}</td>
+                <td>
+                    <button type="button" [routerLink]="['/crud/update/', usuario.id]">Editar</button>
+                    <button type="button" (click)="crudService.delete(usuario.id)">Deletar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
