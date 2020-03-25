@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Usuario
@@ -12,7 +13,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
  * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="username_UNIQUE", columns={"username"})})
  * @ORM\Entity
  */
-class Usuario
+class Usuario implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -140,6 +141,45 @@ class Usuario
         $this->dtRegistro = $dtRegistro;
 
         return $this;
+    }
+
+    public function getSalt()
+    {
+        return 'kknd';
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');   
+    }
+
+    public function eraseCredentials()
+    {
+        
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized, array('allowed_classes' => false));
     }
 
 
