@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { CreateComponent } from './create/create.component';
 import { UpdateComponent } from './update/update.component';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { UpdateComponent } from './update/update.component';
     CommonModule,
     CrudRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MaterialModule
   ]
 })
 export class CrudModule { }

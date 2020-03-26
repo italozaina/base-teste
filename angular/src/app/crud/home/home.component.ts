@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
 
   usuarios: Usuario[] = [];
 
+  displayedColumns: string[] = ["id", "username", "password", "acesso", "dtUltimoAcesso", "status", "dtRegistro", "acao"];
+
   constructor(public crudService: CrudService) { }
 
   ngOnInit(): void {

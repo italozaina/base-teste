@@ -1,33 +1,49 @@
-<div>
-    <h1>Usuários</h1>
-    <button type="button" [routerLink]="['/crud/create/']">Criar novo usuário</button>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>username</th>
-                <th>password</th>
-                <th>acesso</th>
-                <th>dtUltimoAcesso</th>                            
-                <th>status</th>
-                <th>dtRegistro</th>
-                <th>ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let usuario of usuarios['hydra:member']">
-                <td>{{usuario.id}}</td>
-                <td>{{usuario.username}}</td>
-                <td>{{usuario.password}}</td>
-                <td>{{usuario.acesso}}</td>
-                <td>{{usuario.dtUltimoAcesso}}</td>
-                <td>{{usuario.status}}</td>
-                <td>{{usuario.dtRegistro}}</td>
-                <td>
-                    <button type="button" [routerLink]="['/crud/update/', usuario.id]">Editar</button>
-                    <button type="button" (click)="crudService.delete(usuario.id)">Deletar</button>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Usuários</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+        <button color="primary" [routerLink]="['/crud/create/']" mat-raised-button>Criar novo usuário</button>
+    </mat-card-actions>
+    <mat-card-content>
+        <table mat-table [dataSource]="usuarios['hydra:member']" class="mat-elevation-z8">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> # </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef> Username </th>
+                <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+            </ng-container>
+            <ng-container matColumnDef="password">
+                <th mat-header-cell *matHeaderCellDef> password </th>
+                <td mat-cell *matCellDef="let element"> {{element.password}} </td>
+            </ng-container>
+            <ng-container matColumnDef="acesso">
+                <th mat-header-cell *matHeaderCellDef> acesso </th>
+                <td mat-cell *matCellDef="let element"> {{element.acesso}} </td>
+            </ng-container>
+            <ng-container matColumnDef="dtUltimoAcesso">
+                <th mat-header-cell *matHeaderCellDef> dtUltimoAcesso </th>
+                <td mat-cell *matCellDef="let element"> {{element.dtUltimoAcesso}} </td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> status </th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+            <ng-container matColumnDef="dtRegistro">
+                <th mat-header-cell *matHeaderCellDef> dtRegistro </th>
+                <td mat-cell *matCellDef="let element"> {{element.dtRegistro}} </td>
+            </ng-container>
+            <ng-container matColumnDef="acao">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let element">
+                    <button color="basic" [routerLink]="['/crud/update/', element.id]" mat-button><mat-icon aria-label="label">create</mat-icon></button>
+                    <button color="warn" (click)="crudService.delete(element.id)" mat-button><mat-icon aria-label="label">clear</mat-icon></button>
                 </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>        
+    </mat-card-content>
+</mat-card>

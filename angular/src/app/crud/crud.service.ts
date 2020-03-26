@@ -18,6 +18,11 @@ export class CrudService {
       'Content-Type': 'application/json'
     })
   }
+  httpGetOptions = {
+    headers: new HttpHeaders({
+      'Accept': 'application/ld+json'
+    })
+  }
   constructor(private httpClient: HttpClient) { }
 
   create(usuario): Observable<Usuario> {
@@ -27,14 +32,14 @@ export class CrudService {
     )
   }  
   getById(id): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(this.apiServer + '/usuarios/' + id)
+    return this.httpClient.get<Usuario>(this.apiServer + '/usuarios/' + id, this.httpGetOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
 
   getAll(): Observable<Usuario[]> {
-    return this.httpClient.get<Usuario[]>(this.apiServer + '/usuarios/')
+    return this.httpClient.get<Usuario[]>(this.apiServer + '/usuarios/', this.httpGetOptions)
     .pipe(
       catchError(this.errorHandler)
     )

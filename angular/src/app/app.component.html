@@ -1,1 +1,10 @@
-<router-outlet></router-outlet>
+<mat-toolbar  color="primary"  class="fixed-header">
+<mat-toolbar-row>
+<span><mat-icon aria-label="label">important_devices</mat-icon> Base Teste</span>
+<a mat-button routerLink="/crud" routerLinkActive="active">CRUD</a>
+<a mat-button routerLink="/login">Login</a>
+</mat-toolbar-row>
+</mat-toolbar>
+<main>
+    <router-outlet style="margin-top: 80px;"></router-outlet>
+</main>
