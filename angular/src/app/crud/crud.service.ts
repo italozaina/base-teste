@@ -12,7 +12,7 @@ import { Cliente } from './interfaces/cliente';
 })
 export class CrudService {
 
-  private apiServer = "http://localhost:8000";
+  private apiServer = "http://localhost:8000/api";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
